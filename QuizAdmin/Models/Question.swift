@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct Question: Codable {
+struct Question {
     var id: Int?
     var text: String
     var type: Int
+}
+
+extension Question: Nameable {
+    var name: String? {
+        return text
+    }
 }

@@ -2,14 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="onz-yX-UVr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Answers-->
+        <!--Quizable Table View Controller-->
         <scene sceneID="7nb-8y-zcx">
             <objects>
-                <tableViewController id="kbx-9e-dWi" customClass="AnswersTableViewController" customModule="QuizAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="AnswersId" id="kbx-9e-dWi" customClass="QuizableTableViewController" customModule="QuizAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZHm-Wb-saM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,16 +46,16 @@
                             <outlet property="delegate" destination="kbx-9e-dWi" id="CYz-CC-OwS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Answers" image="answer" id="fLe-3P-WBm"/>
+                    <navigationItem key="navigationItem" id="RbM-XP-zxB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaJ-2s-Fyr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="-74"/>
+            <point key="canvasLocation" x="1257.9710144927537" y="-74.330357142857139"/>
         </scene>
-        <!--Questions-->
+        <!--Quizable Table View Controller-->
         <scene sceneID="e8l-TB-wl2">
             <objects>
-                <tableViewController id="WyB-eM-pIO" customClass="QuestionsTableViewController" customModule="QuizAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="QuestionsId" id="WyB-eM-pIO" customClass="QuizableTableViewController" customModule="QuizAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="e8D-3E-YlA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,17 +85,50 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionEditingCell" id="1PE-3z-gcO" customClass="QuestionEditingCell" customModule="QuizAdmin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="83.5" width="414" height="280.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1PE-3z-gcO" id="eu8-w4-hYy">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="280.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UU4-qO-XwT">
+                                            <rect key="frame" x="20" y="11" width="374" height="258.5"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vCf-fW-1lk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLV-6a-MYt">
+                                                    <rect key="frame" x="0.0" y="42" width="374" height="217"/>
+                                                </pickerView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UU4-qO-XwT" secondAttribute="bottom" id="4m0-ff-bYR"/>
+                                        <constraint firstItem="UU4-qO-XwT" firstAttribute="leading" secondItem="eu8-w4-hYy" secondAttribute="leadingMargin" id="61W-Nt-gPr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="UU4-qO-XwT" secondAttribute="trailing" id="TXD-dA-gHs"/>
+                                        <constraint firstItem="UU4-qO-XwT" firstAttribute="top" secondItem="eu8-w4-hYy" secondAttribute="topMargin" id="dHj-QB-pOB"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="picker" destination="QLV-6a-MYt" id="Wcs-uX-iyd"/>
+                                    <outlet property="textField" destination="vCf-fW-1lk" id="NhT-sk-N9p"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="WyB-eM-pIO" id="xGn-Wu-2LF"/>
                             <outlet property="delegate" destination="WyB-eM-pIO" id="jMG-lS-RbS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Questions" image="question" id="fJu-lW-aXv"/>
+                    <navigationItem key="navigationItem" id="y6W-7J-OxZ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhJ-d3-4MU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="-854"/>
+            <point key="canvasLocation" x="1257.9710144927537" y="-854.46428571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vNw-Uy-2rU">
@@ -106,13 +140,51 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="WyB-eM-pIO" kind="relationship" relationship="viewControllers" id="zIV-UP-uid"/>
-                        <segue destination="kbx-9e-dWi" kind="relationship" relationship="viewControllers" id="fV1-05-Sb6"/>
+                        <segue destination="9GV-oG-P5k" kind="relationship" relationship="viewControllers" id="zIV-UP-uid"/>
+                        <segue destination="cxl-7n-B3u" kind="relationship" relationship="viewControllers" id="fV1-05-Sb6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVK-dT-sB0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-752" y="-483"/>
+        </scene>
+        <!--Questions-->
+        <scene sceneID="8pc-0f-l3E">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9GV-oG-P5k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Questions" image="question" id="fJu-lW-aXv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kf8-db-FAX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WyB-eM-pIO" kind="relationship" relationship="rootViewController" id="HTh-9x-TNM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6DT-0s-UyW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="347.82608695652175" y="-854.46428571428567"/>
+        </scene>
+        <!--Answers-->
+        <scene sceneID="C16-Tw-MrV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cxl-7n-B3u" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Answers" image="answer" id="fLe-3P-WBm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GiZ-Bs-lRR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kbx-9e-dWi" kind="relationship" relationship="rootViewController" id="55b-ef-11W"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s88-7i-tsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="347.82608695652175" y="-74.330357142857139"/>
         </scene>
     </scenes>
     <resources>
