@@ -9,5 +9,13 @@
 import Foundation
 
 protocol Nameable: Codable {
+    static var all: [String] { get }
     var name: String? { get }
+    var type: Int { get set }
+    var updated: Bool { get }
+}
+
+extension Nameable {
+    static var all: [String] { [] }
+    var updated: Bool { false }
 }

@@ -21,6 +21,7 @@
 		697BD2FB233155FD008A5967 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2F9233155FD008A5967 /* Main.storyboard */; };
 		697BD2FD233155FF008A5967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2FC233155FF008A5967 /* Assets.xcassets */; };
 		697BD300233155FF008A5967 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2FE233155FF008A5967 /* LaunchScreen.storyboard */; };
+		69E268AC235E3339001134F6 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E268AB235E3339001134F6 /* PickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		697BD2FC233155FF008A5967 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		697BD2FF233155FF008A5967 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		697BD301233155FF008A5967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69E268AB235E3339001134F6 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +107,9 @@
 				69193EB323315C2C006557EC /* Models */,
 				695E706A2335458100977125 /* Protocols */,
 				697BD30B2331599E008A5967 /* Resources */,
+				697BD3082331594F008A5967 /* Storyboards */,
 				697BD30A23315992008A5967 /* View Controllers */,
-				697BD3082331594F008A5967 /* Views */,
+				69E268AA235E3312001134F6 /* Views */,
 			);
 			path = QuizAdmin;
 			sourceTree = "<group>";
@@ -120,13 +123,13 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		697BD3082331594F008A5967 /* Views */ = {
+		697BD3082331594F008A5967 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				697BD2F9233155FD008A5967 /* Main.storyboard */,
 				697BD2FE233155FF008A5967 /* LaunchScreen.storyboard */,
 			);
-			path = Views;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		697BD30923315960008A5967 /* App */ = {
@@ -153,6 +156,14 @@
 				697BD2FC233155FF008A5967 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		69E268AA235E3312001134F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				69E268AB235E3339001134F6 /* PickerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				697BD2F6233155FD008A5967 /* SceneDelegate.swift in Sources */,
 				69193EB923315C41006557EC /* Question.swift in Sources */,
 				69193EB823315C41006557EC /* ResponseType.swift in Sources */,
+				69E268AC235E3339001134F6 /* PickerView.swift in Sources */,
 				69193EBA23315C41006557EC /* AnimalType.swift in Sources */,
 				695E706C233545C200977125 /* Nameable.swift in Sources */,
 				69193EBB23315C41006557EC /* Answer.swift in Sources */,

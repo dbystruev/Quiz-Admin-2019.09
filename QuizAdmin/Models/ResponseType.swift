@@ -12,14 +12,21 @@ enum ResponseType: Int {
 }
 
 extension ResponseType: Nameable {
+    static var all: [String] {
+        return ["Single", "Multiple", "Ranged"]
+    }
+    
     var name: String? {
-        switch self {
-        case .single:
-            return "Single"
-        case .multiple:
-            return "Multiple"
-        case .ranged:
-            return "Ranged"
+        return ResponseType.all[rawValue - 1]
+    }
+    
+    var type: Int {
+        get {
+            return rawValue
+        }
+        set {
+            guard let responseType = ResponseType(rawValue: newValue) else { return }
+            self = responseType
         }
     }
 }

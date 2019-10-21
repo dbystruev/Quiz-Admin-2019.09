@@ -18,6 +18,11 @@ class QuizableTableViewController: UITableViewController {
     // MARK: - UIViewController Methods
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        
+        if !editing {
+            print(#line, #function, "TODO: Update server data")
+        }
+        
         tableView.reloadData()
     }
     
@@ -51,7 +56,31 @@ extension QuizableTableViewController/*: UITableViewDataSource */ {
         let item = items[indexPath.row]
         guard let id = cellManager.identifier(for: item, sender: self) else { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: id) else { return UITableViewCell() }
-        cellManager.configure(cell, with: item, sender: self)
+        cellManager.configure(cell, for: indexPath, with: item, sender: self)
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension QuizableTableViewController/*: UITableViewDelegate */ {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellManager.height(sender: self)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+}
+
+// MARK: - UIPickerViewDelegate
+extension QuizableTableViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard let pickerView = pickerView as? PickerView else { return }
+        guard let indexPath = pickerView.indexPath else { return }
+        items[indexPath.row].type = row + 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ResponseType.all[row]
     }
 }
