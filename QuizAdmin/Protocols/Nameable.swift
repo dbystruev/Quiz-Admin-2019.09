@@ -12,10 +12,13 @@ protocol Nameable: Codable {
     static var all: [String] { get }
     var name: String? { get }
     var type: Int { get set }
-    var updated: Bool { get }
+    var needsUpdate: Bool? { get set }
 }
 
 extension Nameable {
     static var all: [String] { [] }
-    var updated: Bool { false }
+    var needsUpdate: Bool? {
+        get { nil }
+        set {}
+    }
 }

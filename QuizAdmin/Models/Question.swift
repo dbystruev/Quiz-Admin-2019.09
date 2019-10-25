@@ -11,6 +11,7 @@ struct Question {
     var id: Int?
     var text: String
     var type: Int
+    var needsUpdate: Bool?
 }
 
 extension Question: Nameable {

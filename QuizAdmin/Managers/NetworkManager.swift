@@ -45,4 +45,31 @@ class NetworkManager<T: Codable> {
         
         task.resume()
     }
+    
+    func patch(_ codable: T, completion: @escaping (T?, Error?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        let jsonData = try? encoder.encode(codable)
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            guard let codable = try? decoder.decode(T.self, from: data) else {
+                completion(nil, Errors.cantDecodeData(data))
+                return
+            }
+            
+            completion(codable, nil)
+        }
+        
+        task.resume()
+    }
 }

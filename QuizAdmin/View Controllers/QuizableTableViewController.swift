@@ -15,12 +15,44 @@ class QuizableTableViewController: UITableViewController {
     
     var items = [Nameable]()
     
+    var isAnswer: Bool { restorationIdentifier == "AnswersId" }
+    var isQuestion: Bool { restorationIdentifier == "QuestionsId" }
+    
     // MARK: - UIViewController Methods
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
         if !editing {
-            print(#line, #function, "TODO: Update server data")
+            for index in 0 ..< items.count where items[index].needsUpdate == true {
+                if isAnswer {
+                    guard let answer = items[index] as? Answer else { continue }
+                    answersNetworkManager.patch(answer) { answer, error in
+                        guard answer != nil, error == nil else {
+                            print(#line, #function, error?.localizedDescription ?? "Unknown error")
+                            return
+                        }
+                        self.items[index].needsUpdate = false
+                        
+                        #if DEBUG
+                        print(#line, #function, answer ?? "nil")
+                        #endif
+                        
+                    }
+                } else if isQuestion {
+                    guard let question = items[index] as? Question else { continue }
+                    questionsNetworkManager.patch(question) { question, error in
+                        guard question != nil, error == nil else {
+                            print(#line, #function, error?.localizedDescription ?? "Unknown error")
+                            return
+                        }
+                        self.items[index].needsUpdate = false
+                        
+                        #if DEBUG
+                        print(#line, #function, question ?? "nil")
+                        #endif
+                    }
+                }
+            }
         }
         
         tableView.reloadData()
@@ -38,9 +70,9 @@ class QuizableTableViewController: UITableViewController {
             }
         }
         
-        if restorationIdentifier == "AnswersId" {
+        if isAnswer {
             answersNetworkManager.getAll(completion: completion)
-        } else if restorationIdentifier == "QuestionsId" {
+        } else if isQuestion {
             questionsNetworkManager.getAll(completion: completion)
         }
     }
@@ -77,6 +109,7 @@ extension QuizableTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard let pickerView = pickerView as? PickerView else { return }
         guard let indexPath = pickerView.indexPath else { return }
+        items[indexPath.row].needsUpdate = true
         items[indexPath.row].type = row + 1
     }
     

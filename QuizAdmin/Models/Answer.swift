@@ -12,6 +12,7 @@ struct Answer {
     var text: String
     var type: Int
     var questionId: Int?
+    var needsUpdate: Bool?
 }
 
 extension Answer: Nameable {
