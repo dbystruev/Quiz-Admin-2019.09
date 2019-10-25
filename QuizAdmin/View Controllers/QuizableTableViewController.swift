@@ -26,9 +26,9 @@ class QuizableTableViewController: UITableViewController {
             for index in 0 ..< items.count where items[index].needsUpdate == true {
                 if isAnswer {
                     guard let answer = items[index] as? Answer else { continue }
-                    answersNetworkManager.patch(answer) { answer, error in
+                    answersNetworkManager.patch(answer.id, with: answer) { answer, error in
                         guard answer != nil, error == nil else {
-                            print(#line, #function, error?.localizedDescription ?? "Unknown error")
+                            error?.describe()
                             return
                         }
                         self.items[index].needsUpdate = false
@@ -40,9 +40,9 @@ class QuizableTableViewController: UITableViewController {
                     }
                 } else if isQuestion {
                     guard let question = items[index] as? Question else { continue }
-                    questionsNetworkManager.patch(question) { question, error in
+                    questionsNetworkManager.patch(question.id, with: question) { question, error in
                         guard question != nil, error == nil else {
-                            print(#line, #function, error?.localizedDescription ?? "Unknown error")
+                            error?.describe()
                             return
                         }
                         self.items[index].needsUpdate = false
@@ -115,5 +115,14 @@ extension QuizableTableViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return ResponseType.all[row]
+    }
+}
+
+// MARK: - TextField Action
+extension QuizableTableViewController {
+    @objc func textFieldDidChange(_ sender: TextField) {
+        guard let indexPath = sender.indexPath else { return }
+        items[indexPath.row].name = sender.text
+        items[indexPath.row].needsUpdate = true
     }
 }

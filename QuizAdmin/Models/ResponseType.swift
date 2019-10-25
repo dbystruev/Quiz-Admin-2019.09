@@ -17,7 +17,8 @@ extension ResponseType: Nameable {
     }
     
     var name: String? {
-        return ResponseType.all[rawValue - 1]
+        get { ResponseType.all[rawValue - 1] }
+        set {}
     }
     
     var type: Int {

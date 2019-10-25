@@ -37,7 +37,15 @@ class CellManager: NSObject {
     ) {
         if sender.isEditing {
             guard let questionEditingCell = cell as? QuestionEditingCell else { return }
-            questionEditingCell.textField.text = question.text
+            
+            let textField = questionEditingCell.textField
+            textField?.addTarget(
+                sender,
+                action: #selector(sender.textFieldDidChange(_:)),
+                for: .editingChanged
+            )
+            textField?.indexPath = indexPath
+            textField?.text = question.text
             
             let picker = questionEditingCell.picker
             picker?.dataSource = self

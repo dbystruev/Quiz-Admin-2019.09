@@ -17,6 +17,11 @@ struct Answer {
 
 extension Answer: Nameable {
     var name: String? {
-        return text
+        get { text }
+        set {
+            if let newText = newValue {
+                text = newText
+            }
+        }
     }
 }

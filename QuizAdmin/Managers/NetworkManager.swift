@@ -9,17 +9,6 @@
 import Foundation
 
 class NetworkManager<T: Codable> {
-    enum Errors: Swift.Error {
-        case cantDecodeData(Data)
-        
-        var description: String {
-            switch self {
-            case .cantDecodeData(let data):
-                return "Can't decode data \(data)"
-            }
-        }
-    }
-    
     private let url: URL
     
     init?(_ path: String) {
@@ -46,14 +35,25 @@ class NetworkManager<T: Codable> {
         task.resume()
     }
     
-    func patch(_ codable: T, completion: @escaping (T?, Error?) -> Void) {
-        var request = URLRequest(url: url)
+    func patch(_ id: Int?, with codable: T, completion: @escaping (T?, Error?) -> Void) {
+        guard let id = id else {
+            completion(nil, nil)
+            return
+        }
+        
+        let requestURL = url.appendingPathComponent("\(id)")
+        
+        var request = URLRequest(url: requestURL)
         request.httpMethod = "PATCH"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
         let jsonData = try? encoder.encode(codable)
         request.httpBody = jsonData
+        
+//        if let decoded = try? JSONDecoder().decode(T.self, from: jsonData!) {
+//            print(#line, #function, decoded)
+//        }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {

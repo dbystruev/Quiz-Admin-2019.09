@@ -10,7 +10,7 @@ import Foundation
 
 protocol Nameable: Codable {
     static var all: [String] { get }
-    var name: String? { get }
+    var name: String? { get set }
     var type: Int { get set }
     var needsUpdate: Bool? { get set }
 }

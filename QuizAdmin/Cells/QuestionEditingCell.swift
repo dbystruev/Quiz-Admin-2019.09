@@ -9,6 +9,6 @@
 import UIKit
 
 class QuestionEditingCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: TextField!
     @IBOutlet weak var picker: PickerView!
 }

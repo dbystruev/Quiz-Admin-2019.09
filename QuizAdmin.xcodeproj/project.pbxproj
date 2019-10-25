@@ -21,6 +21,9 @@
 		697BD2FB233155FD008A5967 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2F9233155FD008A5967 /* Main.storyboard */; };
 		697BD2FD233155FF008A5967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2FC233155FF008A5967 /* Assets.xcassets */; };
 		697BD300233155FF008A5967 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697BD2FE233155FF008A5967 /* LaunchScreen.storyboard */; };
+		69B3867E2363758A00ECFFA7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B3867D2363758A00ECFFA7 /* Errors.swift */; };
+		69B38680236377FD00ECFFA7 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B3867F236377FD00ECFFA7 /* Error+Extension.swift */; };
+		69B3868223637D3B00ECFFA7 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B3868123637D3B00ECFFA7 /* TextField.swift */; };
 		69E268AC235E3339001134F6 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E268AB235E3339001134F6 /* PickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		697BD2FC233155FF008A5967 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		697BD2FF233155FF008A5967 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		697BD301233155FF008A5967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69B3867D2363758A00ECFFA7 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		69B3867F236377FD00ECFFA7 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		69B3868123637D3B00ECFFA7 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		69E268AB235E3339001134F6 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +109,7 @@
 			children = (
 				697BD30923315960008A5967 /* App */,
 				695E706F2335556A00977125 /* Cells */,
+				69B3867C2363756600ECFFA7 /* Errors */,
 				697BD3072331593D008A5967 /* Managers */,
 				69193EB323315C2C006557EC /* Models */,
 				695E706A2335458100977125 /* Protocols */,
@@ -158,10 +165,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		69B3867C2363756600ECFFA7 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				69B3867D2363758A00ECFFA7 /* Errors.swift */,
+				69B3867F236377FD00ECFFA7 /* Error+Extension.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		69E268AA235E3312001134F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				69E268AB235E3339001134F6 /* PickerView.swift */,
+				69B3868123637D3B00ECFFA7 /* TextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,12 +257,15 @@
 				695E70712335559D00977125 /* QuestionEditingCell.swift in Sources */,
 				695E706E2335465B00977125 /* QuizableTableViewController.swift in Sources */,
 				697BD2F4233155FD008A5967 /* AppDelegate.swift in Sources */,
+				69B3868223637D3B00ECFFA7 /* TextField.swift in Sources */,
 				69193EBD23315DDF006557EC /* CellManager.swift in Sources */,
 				69193EBF23315F96006557EC /* NetworkManager.swift in Sources */,
 				697BD2F6233155FD008A5967 /* SceneDelegate.swift in Sources */,
 				69193EB923315C41006557EC /* Question.swift in Sources */,
+				69B3867E2363758A00ECFFA7 /* Errors.swift in Sources */,
 				69193EB823315C41006557EC /* ResponseType.swift in Sources */,
 				69E268AC235E3339001134F6 /* PickerView.swift in Sources */,
+				69B38680236377FD00ECFFA7 /* Error+Extension.swift in Sources */,
 				69193EBA23315C41006557EC /* AnimalType.swift in Sources */,
 				695E706C233545C200977125 /* Nameable.swift in Sources */,
 				69193EBB23315C41006557EC /* Answer.swift in Sources */,
